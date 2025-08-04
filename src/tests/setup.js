@@ -1,6 +1,11 @@
+import { testConfig } from './test-config.js';
+
 // Configurações globais para testes
-process.env.NODE_ENV = 'test';
-process.env.MONGODB_URI = 'mongodb://localhost:27017/blogging-api-test';
+process.env.NODE_ENV = testConfig.NODE_ENV;
+process.env.MONGODB_URI = testConfig.MONGODB_URI;
+process.env.PORT = testConfig.PORT;
+process.env.RATE_LIMIT_WINDOW_MS = testConfig.RATE_LIMIT_WINDOW_MS;
+process.env.RATE_LIMIT_MAX_REQUESTS = testConfig.RATE_LIMIT_MAX_REQUESTS;
 
 // Aumentar timeout para testes de integração
 jest.setTimeout(30000);
