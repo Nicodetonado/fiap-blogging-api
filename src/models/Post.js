@@ -33,7 +33,6 @@ const postSchema = new mongoose.Schema({
   readTime: {
     type: Number,
     default() {
-      // Calcula tempo de leitura baseado no conteúdo (aproximadamente 200 palavras por minuto)
       const wordCount = this.content ? this.content.split(/\s+/).length : 0;
       return Math.ceil(wordCount / 200);
     }
@@ -44,12 +43,10 @@ const postSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 });
 
-// Índices para melhor performance
 postSchema.index({ title: 'text', content: 'text' });
 postSchema.index({ createdAt: -1 });
 postSchema.index({ author: 1 });
 
-// Virtual para URL amigável
 postSchema.virtual('slug').get(function() {
   return this.title
     .toLowerCase()
@@ -58,7 +55,6 @@ postSchema.virtual('slug').get(function() {
     .replace(/^-+|-+$/g, '');
 });
 
-// Middleware para calcular tempo de leitura antes de salvar
 postSchema.pre('save', function(next) {
   if (this.isModified('content')) {
     const wordCount = this.content.split(/\s+/).length;
@@ -67,7 +63,6 @@ postSchema.pre('save', function(next) {
   next();
 });
 
-// Método estático para busca por texto
 postSchema.statics.searchPosts = function(searchTerm) {
   return this.find({
     $and: [
@@ -83,14 +78,12 @@ postSchema.statics.searchPosts = function(searchTerm) {
   }).sort({ createdAt: -1 });
 };
 
-// Método de instância para resumo do conteúdo
 postSchema.methods.getExcerpt = function(length = 150) {
   return this.content.length > length 
     ? `${this.content.substring(0, length)  }...`
     : this.content;
 };
 
-// Aplicar plugin de paginação
 postSchema.plugin(mongoosePaginate);
 
 export default mongoose.model('Post', postSchema); 

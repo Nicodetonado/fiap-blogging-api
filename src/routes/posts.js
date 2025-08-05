@@ -11,7 +11,6 @@ import {
 
 const router = express.Router();
 
-// Middleware de validação
 const validateRequest = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -24,7 +23,6 @@ const validateRequest = (req, res, next) => {
   next();
 };
 
-// Validações
 const createPostValidation = [
   body('title')
     .trim()
@@ -90,24 +88,11 @@ const searchValidation = [
   validateRequest
 ];
 
-// Rotas públicas (para alunos)
-// GET /posts - Lista de Posts
 router.get('/', getAllPosts);
-
-// GET /posts/search - Busca de Posts
 router.get('/search', searchValidation, searchPosts);
-
-// GET /posts/:id - Leitura de Posts específicos
 router.get('/:id', idValidation, getPostById);
-
-// Rotas administrativas (para professores)
-// POST /posts - Criação de Postagens
 router.post('/', createPostValidation, createPost);
-
-// PUT /posts/:id - Edição de Postagens
 router.put('/:id', updatePostValidation, updatePost);
-
-// DELETE /posts/:id - Exclusão de Postagens
 router.delete('/:id', idValidation, deletePost);
 
 export default router; 

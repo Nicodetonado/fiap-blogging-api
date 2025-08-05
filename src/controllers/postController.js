@@ -1,6 +1,5 @@
 import Post from '../models/Post.js';
 
-// GET /posts - Lista de Posts (para alunos)
 const getAllPosts = async (req, res) => {
   try {
     const { page = 1, limit = 10, sort = '-createdAt' } = req.query;
@@ -38,7 +37,6 @@ const getAllPosts = async (req, res) => {
   }
 };
 
-// GET /posts/search - Busca de Posts
 const searchPosts = async (req, res) => {
   try {
     const { q: searchTerm, page = 1, limit = 10 } = req.query;
@@ -95,7 +93,6 @@ const searchPosts = async (req, res) => {
   }
 };
 
-// GET /posts/:id - Leitura de Posts específicos
 const getPostById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -131,7 +128,6 @@ const getPostById = async (req, res) => {
   }
 };
 
-// POST /posts - Criação de Postagens (para professores)
 const createPost = async (req, res) => {
   try {
     const { title, content, author, tags } = req.body;
@@ -177,7 +173,6 @@ const createPost = async (req, res) => {
   }
 };
 
-// PUT /posts/:id - Edição de Postagens
 const updatePost = async (req, res) => {
   try {
     const { id } = req.params;
@@ -225,7 +220,6 @@ const updatePost = async (req, res) => {
   }
 };
 
-// DELETE /posts/:id - Exclusão de Postagens
 const deletePost = async (req, res) => {
   try {
     const { id } = req.params;

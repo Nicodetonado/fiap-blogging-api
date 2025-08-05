@@ -13,8 +13,6 @@ const connectDB = async () => {
       console.log(`📦 MongoDB conectado: ${conn.connection.host}`);
     }
     
-    
-    // Configurações adicionais do Mongoose
     mongoose.set('debug', process.env.NODE_ENV === 'development');
     
   } catch (error) {
