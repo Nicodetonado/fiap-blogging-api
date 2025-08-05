@@ -14,11 +14,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Conectar ao banco de dados (apenas se não estiver em teste)
-if (process.NODE_ENV !== 'teste') {
+if (process.env.NODE_ENV !== 'test') {
   connectDB();
-} else {
-  // Em modo de teste apenas configura o Mongoose
-  mongoose.set('debug', false);
 }
 
 
@@ -63,7 +60,7 @@ app.get('/health', (req, res) => {
 });
 
 // Middleware de tratamento de erros
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
     error: 'Erro interno do servidor',
@@ -78,7 +75,6 @@ app.use('*', (req, res) => {
     message: `A rota ${req.originalUrl} não existe`
   });
 });
-//Garante que só iniciará sem testes
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
     console.log(`🚀 Servidor rodando na porta ${PORT}`);
