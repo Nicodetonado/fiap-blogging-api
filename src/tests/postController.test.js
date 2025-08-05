@@ -5,7 +5,7 @@ import Post from '../models/Post.js';
 
 // Mock do banco de dados para testes
 beforeAll(async () => {
-  const mongoURI = 'mongodb://localhost:27017/fiap-blogging-api-test';
+  const mongoURI = 'mongodb://127.0.0.1:27017/fiap-blogging-api-test';
   await mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

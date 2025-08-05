@@ -39,7 +39,7 @@ jobs:
     - name: Run tests
       run: npm test
       env:
-        MONGODB_URI: mongodb://localhost:27017/fiap-blogging-api-test
+        MONGODB_URI: mongodb://127.0.0.1:27017/fiap-blogging-api-test
         NODE_ENV: test
 
   build:

@@ -17,8 +17,8 @@ cp env.example .env
 ```
 
 ### 3. Configure o MongoDB
-- **Opção A**: MongoDB local (verifique se porta 27017 está LISTENING)
-- **Opção B**: MongoDB Compass (conecte em `mongodb://localhost:27017`)
+- **Opção A**: MongoDB local (verifique se porta 27017 está LISTENING: `netstat -an | findstr 27017`)
+- **Opção B**: MongoDB Compass (conecte em `mongodb://127.0.0.1:27017`)
 - **Opção C**: Docker (`docker run -d -p 27017:27017 --name mongodb mongo:6.0`)
 
 ### 4. Execute
@@ -55,8 +55,8 @@ docker-compose up -d
 ## 🗄️ MongoDB Compass
 
 1. Abra o MongoDB Compass
-2. Conecte em: `mongodb://localhost:27017`
-3. Crie database: `blogging-api`
+2. Conecte em: `mongodb://127.0.0.1:27017`
+3. Crie database: `fiap-blogging-api`
 4. Crie collection: `posts`
 
 ## 📋 Tecnologias
