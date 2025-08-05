@@ -16,14 +16,5 @@ export default {
     }
   },
   coverageReporters: ['text', 'lcov', 'html'],
-  setupFilesAfterEnv: ['<rootDir>/src/tests/setup.js'],
-  extensionsToTreatAsEsm: ['.js'],
-  globals: {
-    'ts-jest': {
-      useESM: true
-    }
-  },
-  moduleNameMapping: {
-    '^(\\.{1,2}/.*)\\.js$': '$1'
-  }
+  setupFilesAfterEnv: ['C:/Users/%userprofile%/source/repos/fiap-blogging-api/src/tests/setup.js']
 }; 

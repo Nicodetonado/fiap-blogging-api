@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const connectDB = async () => {
   try {
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/blogging-api';
+    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fiap-blogging-api';
     
     const conn = await mongoose.connect(mongoURI, {
       useNewUrlParser: true,

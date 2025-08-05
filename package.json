@@ -1,5 +1,5 @@
 {
-  "name": "blogging-api",
+  "name": "fiap-blogging-api",
   "version": "1.0.0",
   "description": "API de blogging para professores da rede pública",
   "main": "src/server.js",

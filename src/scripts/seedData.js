@@ -156,7 +156,7 @@ A literatura nos permite viver milhares de vidas através das páginas de um liv
 const seedDatabase = async () => {
   try {
     // Conectar ao banco
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/blogging-api';
+    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fiap-blogging-api';
     await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
