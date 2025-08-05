@@ -6,7 +6,7 @@ import {
   getPostById,
   createPost,
   updatePost,
-  deletePost
+  deletePost,
 } from '../controllers/postController.js';
 
 const router = express.Router();
@@ -17,7 +17,7 @@ const validateRequest = (req, res, next) => {
     return res.status(400).json({
       success: false,
       message: 'Dados inválidos',
-      errors: errors.array()
+      errors: errors.array(),
     });
   }
   next();
@@ -36,17 +36,12 @@ const createPostValidation = [
     .trim()
     .isLength({ min: 2, max: 100 })
     .withMessage('Autor deve ter entre 2 e 100 caracteres'),
-  body('tags')
-    .optional()
-    .isArray()
-    .withMessage('Tags deve ser um array'),
-  validateRequest
+  body('tags').optional().isArray().withMessage('Tags deve ser um array'),
+  validateRequest,
 ];
 
 const updatePostValidation = [
-  param('id')
-    .isMongoId()
-    .withMessage('ID inválido'),
+  param('id').isMongoId().withMessage('ID inválido'),
   body('title')
     .optional()
     .trim()
@@ -62,22 +57,17 @@ const updatePostValidation = [
     .trim()
     .isLength({ min: 2, max: 100 })
     .withMessage('Autor deve ter entre 2 e 100 caracteres'),
-  body('tags')
-    .optional()
-    .isArray()
-    .withMessage('Tags deve ser um array'),
+  body('tags').optional().isArray().withMessage('Tags deve ser um array'),
   body('isPublished')
     .optional()
     .isBoolean()
     .withMessage('isPublished deve ser um booleano'),
-  validateRequest
+  validateRequest,
 ];
 
 const idValidation = [
-  param('id')
-    .isMongoId()
-    .withMessage('ID inválido'),
-  validateRequest
+  param('id').isMongoId().withMessage('ID inválido'),
+  validateRequest,
 ];
 
 const searchValidation = [
@@ -85,7 +75,7 @@ const searchValidation = [
     .trim()
     .isLength({ min: 2 })
     .withMessage('Termo de busca deve ter pelo menos 2 caracteres'),
-  validateRequest
+  validateRequest,
 ];
 
 router.get('/', getAllPosts);
@@ -95,4 +85,4 @@ router.post('/', createPostValidation, createPost);
 router.put('/:id', updatePostValidation, updatePost);
 router.delete('/:id', idValidation, deletePost);
 
-export default router; 
+export default router;

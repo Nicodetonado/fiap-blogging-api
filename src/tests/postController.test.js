@@ -34,35 +34,32 @@ describe('Post Controller Tests', () => {
           title: 'Test Post 1',
           content: 'This is test content for post 1',
           author: 'Test Author 1',
-          isPublished: true
+          isPublished: true,
         },
         {
           title: 'Test Post 2',
           content: 'This is test content for post 2',
           author: 'Test Author 2',
-          isPublished: true
+          isPublished: true,
         },
         {
           title: 'Draft Post',
           content: 'This is a draft post',
           author: 'Test Author 3',
-          isPublished: false
-        }
+          isPublished: false,
+        },
       ];
 
       await Post.insertMany(testPosts);
 
-      const response = await request(app)
-        .get('/api/posts')
-        .expect(200);
+      const response = await request(app).get('/api/posts').expect(200);
 
       expect(response.body.success).toBe(true);
       expect(response.body.data.posts).toHaveLength(2);
 
       const postTitles = response.body.data.posts.map(post => post.title);
       expect(postTitles).toContain('Test Post 2');
-      expect(postTitles).toContain('Test Post 1');      
-      
+      expect(postTitles).toContain('Test Post 1');
     });
 
     it('should handle pagination correctly', async () => {
@@ -71,7 +68,7 @@ describe('Post Controller Tests', () => {
         title: `Test Post ${i + 1}`,
         content: `This is test content for post ${i + 1}`,
         author: `Test Author ${i + 1}`,
-        isPublished: true
+        isPublished: true,
       }));
 
       await Post.insertMany(testPosts);
@@ -92,7 +89,7 @@ describe('Post Controller Tests', () => {
         title: 'Test Post',
         content: 'This is test content',
         author: 'Test Author',
-        isPublished: true
+        isPublished: true,
       });
 
       const savedPost = await testPost.save();
@@ -122,7 +119,7 @@ describe('Post Controller Tests', () => {
         title: 'Draft Post',
         content: 'This is a draft post',
         author: 'Test Author',
-        isPublished: false
+        isPublished: false,
       });
 
       const savedPost = await testPost.save();
@@ -142,7 +139,7 @@ describe('Post Controller Tests', () => {
         title: 'New Test Post',
         content: 'This is new test content',
         author: 'New Test Author',
-        tags: ['test', 'education']
+        tags: ['test', 'education'],
       };
 
       const response = await request(app)
@@ -159,7 +156,7 @@ describe('Post Controller Tests', () => {
 
     it('should return 400 for missing required fields', async () => {
       const postData = {
-        title: 'Incomplete Post'
+        title: 'Incomplete Post',
         // Missing content and author
       };
 
@@ -176,7 +173,7 @@ describe('Post Controller Tests', () => {
       const postData = {
         title: 'A', // Too short
         content: 'Short', // Too short
-        author: 'A' // Too short
+        author: 'A', // Too short
       };
 
       const response = await request(app)
@@ -194,7 +191,7 @@ describe('Post Controller Tests', () => {
         title: 'Original Title',
         content: 'Original content',
         author: 'Original Author',
-        isPublished: true
+        isPublished: true,
       });
 
       const savedPost = await testPost.save();
@@ -202,7 +199,7 @@ describe('Post Controller Tests', () => {
       const updateData = {
         title: 'Updated Title',
         content: 'Updated content',
-        author: 'Updated Author'
+        author: 'Updated Author',
       };
 
       const response = await request(app)
@@ -235,7 +232,7 @@ describe('Post Controller Tests', () => {
         title: 'Post to Delete',
         content: 'This post will be deleted',
         author: 'Test Author',
-        isPublished: true
+        isPublished: true,
       });
 
       const savedPost = await testPost.save();
@@ -272,22 +269,22 @@ describe('Post Controller Tests', () => {
           content: 'Learn JavaScript programming',
           author: 'Tech Teacher',
           isPublished: true,
-          tags: ['javascript', 'programming']
+          tags: ['javascript', 'programming'],
         },
         {
           title: 'Math Basics',
           content: 'Basic mathematics concepts',
           author: 'Math Teacher',
           isPublished: true,
-          tags: ['math', 'education']
+          tags: ['math', 'education'],
         },
         {
           title: 'Science Experiments',
           content: 'Fun science experiments for students',
           author: 'Science Teacher',
           isPublished: true,
-          tags: ['science', 'experiments']
-        }
+          tags: ['science', 'experiments'],
+        },
       ];
 
       await Post.insertMany(testPosts);
@@ -311,4 +308,4 @@ describe('Post Controller Tests', () => {
       expect(response.body.message).toBe('Dados inválidos');
     });
   });
-}); 
+});
