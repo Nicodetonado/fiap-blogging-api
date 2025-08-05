@@ -15,6 +15,5 @@ export default {
       statements: 20
     }
   },
-  coverageReporters: ['text', 'lcov', 'html'],
-  setupFilesAfterEnv: ['C:/Users/%userprofile%/source/repos/fiap-blogging-api/src/tests/setup.js']
+  coverageReporters: ['text', 'lcov', 'html']
 }; 

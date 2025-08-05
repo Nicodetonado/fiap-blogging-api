@@ -22,7 +22,7 @@ app.use(helmet());
 // Configuração do CORS
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://yourdomain.com'] 
+    ? ['https://provisorio.com'] 
     : ['http://localhost:3000', 'http://localhost:3001'],
   credentials: true
 }));
