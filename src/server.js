@@ -63,7 +63,7 @@ app.get('/health', (req, res) => {
 });
 
 // Middleware de tratamento de erros
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err.stack);
   res.status(500).json({
     error: 'Erro interno do servidor',
@@ -82,7 +82,7 @@ app.use('*', (req, res) => {
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
     console.log(`🚀 Servidor rodando na porta ${PORT}`);
-    console.log(`📚 API de Blogging para professores`);
+    console.log('📚 API de Blogging para professores');
     console.log(`🌍 Ambiente: ${process.env.NODE_ENV}`);
   });
 }

@@ -8,7 +8,7 @@ const getAllPosts = async (req, res) => {
     const options = {
       page: parseInt(page),
       limit: parseInt(limit),
-      sort: sort,
+      sort,
       customLabels: {
         docs: 'posts',
         totalDocs: 'totalPosts',

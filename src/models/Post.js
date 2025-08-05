@@ -32,7 +32,7 @@ const postSchema = new mongoose.Schema({
   },
   readTime: {
     type: Number,
-    default: function() {
+    default() {
       // Calcula tempo de leitura baseado no conteúdo (aproximadamente 200 palavras por minuto)
       const wordCount = this.content ? this.content.split(/\s+/).length : 0;
       return Math.ceil(wordCount / 200);
@@ -86,7 +86,7 @@ postSchema.statics.searchPosts = function(searchTerm) {
 // Método de instância para resumo do conteúdo
 postSchema.methods.getExcerpt = function(length = 150) {
   return this.content.length > length 
-    ? this.content.substring(0, length) + '...'
+    ? `${this.content.substring(0, length)  }...`
     : this.content;
 };
 
