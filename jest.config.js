@@ -1,5 +1,4 @@
 export default {
-  preset: 'default',
   testEnvironment: 'node',
   testMatch: ['**/tests/**/*.test.js'],
   collectCoverageFrom: [
@@ -16,14 +15,5 @@ export default {
       statements: 20
     }
   },
-  coverageReporters: ['text', 'lcov', 'html'],
-  extensionsToTreatAsEsm: ['.js'],
-  globals: {
-    'ts-jest': {
-      useESM: true
-    }
-  },
-  moduleNameMapping: {
-    '^(\\.{1,2}/.*)\\.js$': '$1'
-  }
+  coverageReporters: ['text', 'lcov', 'html']
 }; 
