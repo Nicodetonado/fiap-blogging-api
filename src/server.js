@@ -13,8 +13,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Conectar ao banco de dados
-connectDB();
+// Conectar ao banco de dados (apenas se não estiver em teste)
+if (process.NODE_ENV !== 'teste') {
+  connectDB();
+} else {
+  // Em modo de teste apenas configura o Mongoose
+  mongoose.set('debug', false);
+}
+
 
 // Middleware de segurança
 app.use(helmet());
@@ -72,11 +78,14 @@ app.use('*', (req, res) => {
     message: `A rota ${req.originalUrl} não existe`
   });
 });
+//Garante que só iniciará sem testes
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor rodando na porta ${PORT}`);
+    console.log(`📚 API de Blogging para professores`);
+    console.log(`🌍 Ambiente: ${process.env.NODE_ENV}`);
+  });
+}
 
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando na porta ${PORT}`);
-  console.log(`📚 API de Blogging para professores`);
-  console.log(`🌍 Ambiente: ${process.env.NODE_ENV}`);
-});
 
 export default app; 

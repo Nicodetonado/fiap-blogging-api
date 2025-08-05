@@ -8,15 +8,21 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
-    console.log(`📦 MongoDB conectado: ${conn.connection.host}`);
+    
+    if (process.env.NODE_ENV !== 'test') {
+      console.log(`📦 MongoDB conectado: ${conn.connection.host}`);
+    }
+    
     
     // Configurações adicionais do Mongoose
     mongoose.set('debug', process.env.NODE_ENV === 'development');
     
   } catch (error) {
     console.error('❌ Erro ao conectar com MongoDB:', error.message);
-    process.exit(1);
+    if (process.env.NODE_ENV !== 'test') {
+      process.exit(1);
+    }
+    throw error;    
   }
 };
 
