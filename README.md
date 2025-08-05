@@ -87,7 +87,7 @@ docker-compose up --build -d
 docker-compose exec app npm run seed
 
 # 5. Verifique se está funcionando
-curl http://localhost:3000/health
+curl http://localhost:3001/health
 ```
 
 ### Opção 2: Setup Local (Desenvolvimento)
@@ -129,7 +129,7 @@ curl http://localhost:3000/health
 
 ### Base URL
 ```
-http://localhost:3000/api/posts
+http://localhost:3001/api/posts
 ```
 
 ### Autenticação
@@ -150,7 +150,7 @@ GET /api/posts
 
 **Exemplo:**
 ```bash
-curl "http://localhost:3000/api/posts?page=1&limit=5"
+curl "http://localhost:3001/api/posts?page=1&limit=5"
 ```
 
 **Resposta:**
@@ -180,7 +180,7 @@ GET /api/posts/search?q=termo
 
 **Exemplo:**
 ```bash
-curl "http://localhost:3000/api/posts/search?q=programação&page=1&limit=5"
+curl "http://localhost:3001/api/posts/search?q=programação&page=1&limit=5"
 ```
 
 **Resposta:**
@@ -204,7 +204,7 @@ GET /api/posts/:id
 
 **Exemplo:**
 ```bash
-curl http://localhost:3000/api/posts/64f8a1b2c3d4e5f67890123
+curl http://localhost:3001/api/posts/64f8a1b2c3d4e5f67890123
 ```
 
 **Resposta:**
@@ -243,7 +243,7 @@ POST /api/posts
 
 **Exemplo:**
 ```bash
-curl -X POST http://localhost:3000/api/posts \
+curl -X POST http://localhost:3001/api/posts \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Matemática Divertida",
@@ -290,7 +290,7 @@ PUT /api/posts/:id
 
 **Exemplo:**
 ```bash
-curl -X PUT http://localhost:3000/api/posts/64f8a1b2c3d4e5f67890123 \
+curl -X PUT http://localhost:3001/api/posts/64f8a1b2c3d4e5f67890123 \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Título Atualizado",
@@ -305,7 +305,7 @@ DELETE /api/posts/:id
 
 **Exemplo:**
 ```bash
-curl -X DELETE http://localhost:3000/api/posts/64f8a1b2c3d4e5f67890123
+curl -X DELETE http://localhost:3001/api/posts/64f8a1b2c3d4e5f67890123
 ```
 
 **Resposta:**
@@ -347,7 +347,7 @@ O projeto utiliza **containerização completa** com três serviços:
 
 ```yaml
 services:
-  app:           # Aplicação Node.js (porta 3000)
+  app:           # Aplicação Node.js (porta 3001)
   mongo:         # MongoDB (porta 27017)
   mongo-express: # Interface web MongoDB (porta 8081)
 ```
@@ -376,7 +376,7 @@ docker-compose up --build app
 
 ### Acessos
 
-- **API**: http://localhost:3000
+- **API**: http://localhost:3001
 - **MongoDB**: mongodb://localhost:27017
 - **Mongo Express**: http://localhost:8081 (admin/admin123)
 
