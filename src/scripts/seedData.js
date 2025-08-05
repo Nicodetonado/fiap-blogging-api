@@ -34,7 +34,7 @@ console.log(saudacao("Maria")); // Output: Olá, Maria!
 Este é apenas o começo da sua jornada na programação. Continue praticando e explorando novos conceitos!`,
     author: 'Prof. Ana Silva',
     tags: ['programação', 'javascript', 'educação', 'tecnologia'],
-    isPublished: true
+    isPublished: true,
   },
   {
     title: 'Matemática Divertida: Geometria no Cotidiano',
@@ -64,7 +64,7 @@ Onde π (pi) ≈ 3,14159 e r é o raio.
 A geometria não é apenas números e fórmulas - é uma forma de ver o mundo com olhos matemáticos!`,
     author: 'Prof. Carlos Mendes',
     tags: ['matemática', 'geometria', 'educação', 'cotidiano'],
-    isPublished: true
+    isPublished: true,
   },
   {
     title: 'Ciências: O Ciclo da Água',
@@ -89,7 +89,7 @@ O ciclo da água, também conhecido como ciclo hidrológico, é o processo cont�
 A água que bebemos hoje é a mesma que existia há milhões de anos! O ciclo da água recicla constantemente este recurso vital.`,
     author: 'Prof. Maria Santos',
     tags: ['ciências', 'água', 'meio ambiente', 'educação'],
-    isPublished: true
+    isPublished: true,
   },
   {
     title: 'História: A Revolução Industrial',
@@ -112,7 +112,7 @@ A Revolução Industrial começou na Inglaterra no final do século XVIII e se e
 
 **Legado:**
 A Revolução Industrial estabeleceu as bases do mundo moderno, influenciando:
-- Sistemas de produção
+- Sistemas de desenvolvimento
 - Organização social
 - Desenvolvimento tecnológico
 - Globalização
@@ -120,7 +120,7 @@ A Revolução Industrial estabeleceu as bases do mundo moderno, influenciando:
 Este período histórico nos ensina como a inovação pode transformar completamente uma sociedade.`,
     author: 'Prof. Roberto Lima',
     tags: ['história', 'revolução industrial', 'educação', 'tecnologia'],
-    isPublished: true
+    isPublished: true,
   },
   {
     title: 'Literatura: O Poder da Narrativa',
@@ -149,14 +149,15 @@ No conto "A Hora da Estrela" de Clarice Lispector, a autora explora temas como:
 A literatura nos permite viver milhares de vidas através das páginas de um livro.`,
     author: 'Prof. Fernanda Costa',
     tags: ['literatura', 'narrativa', 'educação', 'arte'],
-    isPublished: true
-  }
+    isPublished: true,
+  },
 ];
 
 const seedDatabase = async () => {
   try {
     // Conectar ao banco
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/fiap-blogging-api';
+    const mongoURI =
+      process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/fiap-blogging-api';
     await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -175,7 +176,7 @@ const seedDatabase = async () => {
     // Mostrar estatísticas
     const totalPosts = await Post.countDocuments();
     const publishedPosts = await Post.countDocuments({ isPublished: true });
-    
+
     console.log('\n📊 Estatísticas:');
     console.log(`- Total de posts: ${totalPosts}`);
     console.log(`- Posts publicados: ${publishedPosts}`);
@@ -196,4 +197,4 @@ if (process.argv[1] && process.argv[1].includes('seedData.js')) {
   seedDatabase();
 }
 
-export default seedDatabase; 
+export default seedDatabase;

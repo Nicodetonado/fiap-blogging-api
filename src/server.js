@@ -18,25 +18,24 @@ if (process.env.NODE_ENV !== 'test') {
   connectDB();
 }
 
-
 // Middleware de segurança
 app.use(helmet());
 
 // Configuração do CORS
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://provisorio.com'] 
-    : ['http://localhost:3000', 'http://localhost:3001'],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    credentials: true,
+  })
+);
 
 // Rate limiting
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutos
   max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100, // limite por IP
   message: {
-    error: 'Muitas requisições deste IP, tente novamente mais tarde.'
-  }
+    error: 'Muitas requisições deste IP, tente novamente mais tarde.',
+  },
 });
 app.use(limiter);
 
@@ -55,7 +54,7 @@ app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'OK',
     message: 'API de Blogging funcionando corretamente',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
@@ -64,7 +63,7 @@ app.use((err, req, res, _next) => {
   console.error(err.stack);
   res.status(500).json({
     error: 'Erro interno do servidor',
-    message: process.env.NODE_ENV === 'development' ? err.message : 'Algo deu errado'
+    message: err.message,
   });
 });
 
@@ -72,7 +71,7 @@ app.use((err, req, res, _next) => {
 app.use('*', (req, res) => {
   res.status(404).json({
     error: 'Rota não encontrada',
-    message: `A rota ${req.originalUrl} não existe`
+    message: `A rota ${req.originalUrl} não existe`,
   });
 });
 if (process.env.NODE_ENV !== 'test') {
@@ -83,5 +82,4 @@ if (process.env.NODE_ENV !== 'test') {
   });
 }
 
-
-export default app; 
+export default app;

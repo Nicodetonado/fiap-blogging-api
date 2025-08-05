@@ -68,9 +68,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     
     steps:
-    - name: Deploy to production
+    - name: Build completed
       run: |
-        echo "Deploying to production..."
         echo "Build completed successfully!"
-        # Aqui você pode adicionar comandos para deploy
-        # Por exemplo, deploy para AWS, Google Cloud, etc. 
+        echo "Ready for deployment when needed!"
