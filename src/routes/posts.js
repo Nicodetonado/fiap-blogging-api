@@ -2,12 +2,11 @@ import express from 'express';
 import { body, param, query, validationResult } from 'express-validator';
 import {
   getAllPosts,
+  searchPosts,
   getPostById,
   createPost,
   updatePost,
-  deletePost,
-  searchPosts,
-  getAllPostsAdmin
+  deletePost
 } from '../controllers/postController.js';
 
 const router = express.Router();
@@ -95,11 +94,11 @@ const searchValidation = [
 // GET /posts - Lista de Posts
 router.get('/', getAllPosts);
 
-// GET /posts/:id - Leitura de Posts específicos
-router.get('/:id', idValidation, getPostById);
-
 // GET /posts/search - Busca de Posts
 router.get('/search', searchValidation, searchPosts);
+
+// GET /posts/:id - Leitura de Posts específicos
+router.get('/:id', idValidation, getPostById);
 
 // Rotas administrativas (para professores)
 // POST /posts - Criação de Postagens
@@ -110,8 +109,5 @@ router.put('/:id', updatePostValidation, updatePost);
 
 // DELETE /posts/:id - Exclusão de Postagens
 router.delete('/:id', idValidation, deletePost);
-
-// GET /posts/admin - Listagem de Todas as Postagens (para professores)
-router.get('/admin/all', getAllPostsAdmin);
 
 export default router; 
