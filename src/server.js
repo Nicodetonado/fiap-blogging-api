@@ -11,7 +11,7 @@ import postsRoutes from './routes/posts.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // Conectar ao banco de dados (apenas se não estiver em teste)
 if (process.env.NODE_ENV !== 'test') {
@@ -19,7 +19,10 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // Middleware de segurança
-app.use(helmet());
+app.use(helmet({
+  crossOriginEmbedderPolicy: false,
+  contentSecurityPolicy: false,
+}));
 
 // Configuração do CORS
 app.use(
@@ -28,7 +31,15 @@ app.use(
       'http://localhost:3000', 
       'http://localhost:3001',
       'http://localhost:5173',  // Vite dev server
+      'http://localhost:5174',  // Vite dev server alternativo
+      'http://localhost:5175',  // Vite dev server alternativo
+      'http://localhost:5176',  // Vite dev server atual
+      'http://localhost:5177',  // Vite dev server atual
       'http://127.0.0.1:5173',  // Vite dev server alternativo
+      'http://127.0.0.1:5174',  // Vite dev server alternativo
+      'http://127.0.0.1:5175',  // Vite dev server alternativo
+      'http://127.0.0.1:5176',  // Vite dev server atual
+      'http://127.0.0.1:5177',  // Vite dev server atual
       'http://localhost:4173',  // Vite preview
       'http://127.0.0.1:4173'   // Vite preview alternativo
     ],
