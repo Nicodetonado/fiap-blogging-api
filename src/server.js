@@ -11,7 +11,7 @@ import postsRoutes from './routes/posts.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Conectar ao banco de dados (apenas se não estiver em teste)
 if (process.env.NODE_ENV !== 'test') {
@@ -24,8 +24,17 @@ app.use(helmet());
 // Configuração do CORS
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: [
+      'http://localhost:3000', 
+      'http://localhost:3001',
+      'http://localhost:5173',  // Vite dev server
+      'http://127.0.0.1:5173',  // Vite dev server alternativo
+      'http://localhost:4173',  // Vite preview
+      'http://127.0.0.1:4173'   // Vite preview alternativo
+    ],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
   })
 );
 
