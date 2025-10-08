@@ -1,4 +1,4 @@
-# 📚 API de Blogging para Professores - Tech Challenge
+# 🔧 API de Blogging para Professores - Tech Challenge
 
 API REST completa para criação e gerenciamento de posts educacionais, desenvolvida com containerização Docker e CI/CD automatizado.
 
@@ -26,6 +26,7 @@ Esta API permite que professores da rede pública criem e gerenciem posts educac
 - ✅ **Containerização** completa com Docker
 - ✅ **CI/CD** automatizado
 - ✅ **Testes** automatizados
+- ✅ **Integração** com frontend React
 
 ## 🏗️ Arquitetura da Aplicação
 
@@ -62,6 +63,7 @@ src/
 - **Testes**: Jest + Supertest
 - **CI/CD**: GitHub Actions
 - **Qualidade**: ESLint + Prettier
+- **Frontend**: React + Vite (projeto separado)
 
 ## 🚀 Setup Inicial
 
@@ -511,6 +513,8 @@ npm run seed
 - **CI/CD**: Pipeline automatizado
 - **Qualidade**: ESLint + Prettier
 - **Documentação**: README completo
+- **Frontend**: Interface React moderna
+- **Integração**: API + Frontend funcionais
 
 ---
 
